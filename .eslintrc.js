@@ -13,6 +13,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    quotes: ['error', 'single'],
     'max-len': 0,
     'no-param-reassign': 0,
     'jsx-a11y/label-has-associated-control': 0,
