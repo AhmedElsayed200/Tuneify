@@ -1,8 +1,22 @@
 import { useState } from 'react';
 import { genres } from '../assets/constants';
+import { useGetSongsByGenreQuery } from '../redux/APIs/libraryAPI';
+import SongCard from '../components/SongCard';
+import Loader from '../components/Loader';
+import Error from '../components/Error';
 
 const Discover = () => {
   const [selectedGenre, setSelectedGenre] = useState(`${genres[0]?.value}`);
+  const {
+    data: songs,
+    isFetching,
+    error,
+  } = useGetSongsByGenreQuery(selectedGenre);
+
+  if (isFetching) return <Loader />;
+  if (error) return <Error />;
+
+  console.log(songs);
 
   return (
     <div>
@@ -21,6 +35,12 @@ const Discover = () => {
             </option>
           ))}
         </select>
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-10 sm:justify-start">
+        {songs?.data?.map((song, i) => (
+          <SongCard key={song.id} song={song} index={i} />
+        ))}
       </div>
     </div>
   );
