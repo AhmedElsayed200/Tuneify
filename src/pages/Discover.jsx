@@ -1,11 +1,16 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { genres } from '../assets/constants';
 import { useGetSongsByGenreQuery } from '../redux/APIs/libraryAPI';
+
 import SongCard from '../components/SongCard';
 import Loader from '../components/Loader';
 import Error from '../components/Error';
 
 const Discover = () => {
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const dispatch = useDispatch();
+
   const [selectedGenre, setSelectedGenre] = useState(`${genres[0]?.value}`);
   const {
     data: songs,
@@ -39,7 +44,14 @@ const Discover = () => {
 
       <div className="flex flex-wrap justify-center gap-10 sm:justify-start">
         {songs?.data?.map((song, i) => (
-          <SongCard key={song.id} song={song} index={i} />
+          <SongCard
+            key={song.id}
+            song={song}
+            index={i}
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            songs={songs}
+          />
         ))}
       </div>
     </div>
