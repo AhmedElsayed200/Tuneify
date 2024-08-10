@@ -7,7 +7,7 @@ const PlayPause = ({
   isPlaying,
   activeSong,
 }) => {
-  if (isPlaying && activeSong === song?.attributes?.name) {
+  if (isPlaying && activeSong?.title === song?.title) {
     return (
       <FaPauseCircle
         size={35}

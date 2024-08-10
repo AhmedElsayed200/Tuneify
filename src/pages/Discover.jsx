@@ -11,12 +11,10 @@ const Discover = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const dispatch = useDispatch();
 
-  const [selectedGenre, setSelectedGenre] = useState(`${genres[0]?.value}`);
-  const {
-    data: songs,
-    isFetching,
-    error,
-  } = useGetSongsByGenreQuery(selectedGenre);
+  console.log(activeSong);
+
+  const [selectedGenre, setSelectedGenre] = useState();
+  const { data: songs, isFetching, error } = useGetSongsByGenreQuery();
 
   if (isFetching) return <Loader />;
   if (error) return <Error />;
@@ -43,14 +41,14 @@ const Discover = () => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-10 sm:justify-start">
-        {songs?.data?.map((song, i) => (
+        {songs?.tracks?.map((song, i) => (
           <SongCard
-            key={song.id}
+            key={song.key}
             song={song}
             index={i}
             isPlaying={isPlaying}
             activeSong={activeSong}
-            songs={songs}
+            songs={songs?.tracks}
           />
         ))}
       </div>

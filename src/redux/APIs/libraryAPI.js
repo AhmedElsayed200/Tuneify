@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://shazam-core7.p.rapidapi.com/charts/',
+  baseUrl: 'https://shazam-core7.p.rapidapi.com/songs/',
   prepareHeaders: (headers) => {
     headers.set(
       'x-rapidapi-key',
@@ -14,7 +14,7 @@ const baseQuery = fetchBaseQuery({
 
 const endpoints = (builder) => ({
   getSongsByGenre: builder.query({
-    query: (genre) => `get-top-songs-in_world_by_genre?genre=${genre}&limit=50`,
+    query: () => 'list-recommendations?id=293401556&limit=20',
   }),
   getPosts: builder.query({
     query: () => 'posts',
