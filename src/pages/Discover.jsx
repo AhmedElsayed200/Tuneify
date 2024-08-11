@@ -22,7 +22,7 @@ const Discover = () => {
   console.log(songs);
 
   return (
-    <div>
+    <div className="flex flex-col">
       <div className="w-full flex justify-between items-center flex-col mt-4 mb-10 sm:flex-row">
         <h2 className="text-white font-bold text-3xl">
           Discover {selectedGenre}
