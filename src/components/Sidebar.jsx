@@ -41,7 +41,7 @@ const Sidebar = () => {
       </div>
 
       {/* Mobile sidebar toggle button */}
-      <div className="absolute md:hidden block top-6 right-3">
+      <div className="absolute md:hidden block top-1 right-3">
         {isMobileMenuOpen ? (
           <RiCloseLine
             className="w-6 h-6 text-white"
