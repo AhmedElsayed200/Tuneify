@@ -16,11 +16,11 @@ const endpoints = (builder) => ({
   getSongsByGenre: builder.query({
     query: () => 'list-recommendations?id=293401556&limit=20',
   }),
-  getPosts: builder.query({
-    query: () => 'posts',
+  getSongInfo: builder.query({
+    query: (id) => `/get_details?id=${id}`,
   }),
-  getComments: builder.query({
-    query: () => 'comments',
+  getRelatedSongs: builder.query({
+    query: (id) => `list-recommendations?id=${id}&limit=20`,
   }),
 });
 
@@ -30,4 +30,8 @@ export const musicAPI = createApi({
   endpoints,
 });
 
-export const { useGetSongsByGenreQuery } = musicAPI;
+export const {
+  useGetSongsByGenreQuery,
+  useGetSongInfoQuery,
+  useGetRelatedSongsQuery,
+} = musicAPI;
