@@ -15,6 +15,8 @@ const SongCard = ({ song, index, isPlaying, activeSong, songs }) => {
     dispatch(playPause(false));
   };
 
+  console.log(song);
+
   return (
     <div className="w-[250px] flex flex-col p-4 bg-white/5 bg-opacity-80 rounded-lg cursor-pointer backdrop-blur-sm animate-slideup">
       <div className="relative w-full h-56 group">
@@ -40,7 +42,9 @@ const SongCard = ({ song, index, isPlaying, activeSong, songs }) => {
           <Link to={`songs/${song?.key}`}>{song?.title}</Link>
         </p>
         <p className="mt-1 text-sm text-gray-300 truncate">
-          <Link to={`artists/${song?.adamid}`}>{song?.subtitle}</Link>
+          <Link to={`artists/${song?.artists[0]?.adamid}`}>
+            {song?.subtitle}
+          </Link>
         </p>
       </div>
     </div>
