@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://shazam-core7.p.rapidapi.com/songs/',
+  baseUrl: 'https://shazam-core7.p.rapidapi.com/',
   prepareHeaders: (headers) => {
     headers.set(
       'x-rapidapi-key',
@@ -14,13 +14,19 @@ const baseQuery = fetchBaseQuery({
 
 const endpoints = (builder) => ({
   getSongsByGenre: builder.query({
-    query: () => 'list-recommendations?id=293401556&limit=20',
+    query: () => 'songs/list-recommendations?id=293401556&limit=20',
   }),
   getSongInfo: builder.query({
-    query: (id) => `/get_details?id=${id}`,
+    query: (id) => `songs/get_details?id=${id}`,
   }),
   getRelatedSongs: builder.query({
-    query: (id) => `list-recommendations?id=${id}&limit=20`,
+    query: (id) => `songs/list-recommendations?id=${id}&limit=20`,
+  }),
+  getArtistDetails: builder.query({
+    query: (id) => `artist/get-details?id=${id}`,
+  }),
+  getArtistSongs: builder.query({
+    query: (id) => `artist/get-top-songs?id=${id}&offset=0`,
   }),
 });
 
@@ -34,4 +40,6 @@ export const {
   useGetSongsByGenreQuery,
   useGetSongInfoQuery,
   useGetRelatedSongsQuery,
+  useGetArtistDetailsQuery,
+  useGetArtistSongsQuery,
 } = musicAPI;
