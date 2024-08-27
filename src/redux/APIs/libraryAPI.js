@@ -14,7 +14,7 @@ const baseQuery = fetchBaseQuery({
 
 const endpoints = (builder) => ({
   getSongsByGenre: builder.query({
-    query: () => 'songs/list-recommendations?id=293401556&limit=20',
+    query: (id) => `songs/list-recommendations?id=${id}&limit=20`,
   }),
   getSongInfo: builder.query({
     query: (id) => `songs/get_details?id=${id}`,
