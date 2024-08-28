@@ -37,7 +37,9 @@ const TopChartCard = ({
       />
       <div className="flex-1 flex flex-col justify-center mx-3">
         <Link to={`/songs/${song.key}`}>
-          <p className="text-xl font-bold text-white">{song?.title}</p>
+          <p className="text-sm font-bold text-white">
+            {song?.title?.slice(0, 60)}
+          </p>
         </Link>
         <Link to={`/artists/${song?.artists[0].adamid}`}>
           <p className="text-base text-gray-300 mt-1">{song?.subtitle}</p>
@@ -58,7 +60,7 @@ const TopChartCard = ({
 const TopPlay = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  const { data } = useGetSongsByGenreQuery();
+  const { data } = useGetSongsByGenreQuery('109582281');
   const containerRef = useRef(null);
 
   const songs = data?.tracks;
@@ -80,7 +82,7 @@ const TopPlay = () => {
   return (
     <div
       ref={containerRef}
-      className="flex-1 xl:max-w-[500px] max-w-full xl:ml-6 ml-0 xl:mb-0 mb-6 flex flex-col"
+      className="flex-1 xl:max-w-[400px] max-w-full xl:ml-6 ml-0 xl:mb-0 mb-6 flex flex-col"
     >
       <section className="w-full flex flex-col">
         <header className="flex items-center justify-between">
@@ -120,7 +122,7 @@ const TopPlay = () => {
           centeredSlides
           centeredSlidesBounds
           modules={[FreeMode]}
-          className="mt-4"
+          className="mt-4 mb-10"
         >
           {topSongs?.slice(0, 5).map((artist) => (
             <SwiperSlide

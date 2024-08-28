@@ -27,7 +27,7 @@ const Discover = () => {
         <h2 className="text-white font-bold text-3xl">Discover</h2>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-10 sm:justify-start">
+      <div className="flex flex-wrap justify-center gap-8 sm:justify-start">
         {songs?.tracks?.map((song, i) => (
           <SongCard
             key={song.key}
