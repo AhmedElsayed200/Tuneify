@@ -28,6 +28,9 @@ const endpoints = (builder) => ({
   getArtistSongs: builder.query({
     query: (id) => `artist/get-top-songs?id=${id}&offset=0`,
   }),
+  getSongsBySearch: builder.query({
+    query: (term) => `search?term=${term}&limit=10`,
+  }),
 });
 
 export const musicAPI = createApi({
@@ -42,4 +45,5 @@ export const {
   useGetRelatedSongsQuery,
   useGetArtistDetailsQuery,
   useGetArtistSongsQuery,
+  useGetSongsBySearchQuery,
 } = musicAPI;
