@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
 
 const SongCard = ({ song, index, isPlaying, activeSong, songs }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handlePlay = () => {
     dispatch(setActiveSong({ song, songs, index }));
@@ -15,7 +16,13 @@ const SongCard = ({ song, index, isPlaying, activeSong, songs }) => {
     dispatch(playPause(false));
   };
 
-  console.log(song);
+  const handleSongClick = () => {
+    navigate(`/songs/${song?.key}`);
+  };
+
+  const handleArtistClick = () => {
+    navigate(`/artists/${song?.artists[0]?.adamid}`);
+  };
 
   return (
     <div className="w-[250px] flex flex-col p-4 bg-white/5 bg-opacity-80 rounded-lg cursor-pointer backdrop-blur-sm animate-slideup">
@@ -35,17 +42,26 @@ const SongCard = ({ song, index, isPlaying, activeSong, songs }) => {
             activeSong={activeSong}
           />
         </div>
-        <img alt="image_song" src={song?.images?.coverart} />
+        <img
+          alt="image_song"
+          src={song?.images?.coverart || song?.images?.default}
+        />
       </div>
       <div className="flex flex-col mt-4">
-        <p className="font-semibold text-lg text-white truncate">
-          <Link to={`songs/${song?.key}`}>{song?.title}</Link>
-        </p>
-        <p className="mt-1 text-sm text-gray-300 truncate">
-          <Link to={`artists/${song?.artists[0]?.adamid}`}>
-            {song?.subtitle}
-          </Link>
-        </p>
+        <button
+          className="font-semibold text-lg text-white truncate"
+          onClick={handleSongClick}
+          type="button"
+        >
+          {song?.title || song?.heading?.title}
+        </button>
+        <button
+          className="mt-1 text-sm text-gray-300 truncate"
+          onClick={handleArtistClick}
+          type="button"
+        >
+          {song?.subtitle || song?.heading?.subtitle}
+        </button>
       </div>
     </div>
   );
