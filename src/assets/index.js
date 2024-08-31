@@ -1,7 +1,4 @@
 import loader from './loader.svg';
-import logo from './logo.svg';
+import logo from './logo.webp';
 
-export {
-  logo,
-  loader,
-};
+export { logo, loader };
