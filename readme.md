@@ -13,7 +13,7 @@ Tuneify is a web application designed to bring a Spotify-like experience to user
 
 ## Demo
 
-Check out Tuneify [here](https://ornate-clafoutis-9dd8dd.netlify.app/).
+Check out Tuneify [here](https://tuneify-appview.netlify.app/).
 
 ## Screenshot
 
